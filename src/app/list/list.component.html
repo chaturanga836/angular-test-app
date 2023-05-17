@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="row">
+        <div class="col mt-4">
+            <a class="link" routerLink="/info" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
+                Go Back
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered">
+                <thead class="text-center">
+                    <tr>
+                        <th>Email</th>
+                        <th>Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <ng-container *ngIf="dataList.length > 0">
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex justify-content-end">
+                                    <div class="btn-group">
+                                        <button class="btn btn-outline-primary" [disabled]="page <= 1" (click)="goStart()">
+                                            
+                                            <i class="bi bi-chevron-double-left"></i>
+                                        </button>
+                                        <button class="btn btn-outline-primary" [disabled]="page <= 1"  (click)="goPrev()">
+                                            <i class="bi bi-arrow-left-short"></i>
+                                        </button>
+                                        <button class="btn btn-outline-primary" disabled> {{ page}} of {{ totalPages}}</button>
+                                            
+                                        <button class="btn btn-outline-primary" [disabled]="page >= totalPages" (click)="goNext()"> 
+                                            <i class="bi bi-arrow-right-short"></i>
+                                        </button>
+                                        <button class="btn btn-outline-primary" [disabled]="page >= totalPages" (click)="goEnd()"> 
+                                            <i class="bi bi-chevron-double-right"></i>
+                                        </button>
+                                    </div>
+                                    <div class="ms-3">
+                                        <input type="number" class="form-control-sm text-center page-input-size" (blur)="onChangePage()" (keydown.enter)="onChangePage()" [(ngModel)]="currentPage"/>
+                                    
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr *ngFor="let val of dataList" class="pt-2 pb-2">
+                            <td>{{ val.email}}</td>
+                            <td>{{ val.password}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="d-flex">
+                                    <div class="btn-group justify-content-end">
+                                        <button class="btn btn-outline-primary" [disabled]="page <= 1" (click)="goStart()">
+                                            <i class="bi bi-chevron-double-left"></i>
+                                        </button>
+                                        <button class="btn btn-outline-primary" [disabled]="page <= 1"  (click)="goPrev()">
+                                            <i class="bi bi-arrow-left-short"></i>
+                                        </button>
+                                        <button class="btn btn-outline-primary" disabled> {{ page}} of {{ totalPages}}</button>
+                                            
+                                        <button class="btn btn-outline-primary" [disabled]="page >= totalPages" (click)="goNext()"> 
+                                            <i class="bi bi-arrow-right-short"></i>
+                                        </button>
+                                        <button class="btn btn-outline-primary" [disabled]="page >= totalPages" (click)="goEnd()"> 
+                                            <i class="bi bi-chevron-double-right"></i>
+                                        </button>
+                                    </div>
+                                    <div class="ms-3">
+                                        <input type="number" class="form-control-sm text-center page-input-size" (blur)="onChangePage()" (keydown.enter)="onChangePage()" [(ngModel)]="currentPage"/>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-container>
+                    <ng-container *ngIf="dataList.length == 0">
+
+                        <tr>
+                            <td colspan="2" class="text-center text-black-50 pt-4 pb-4">
+                                <i class="bi bi-box"></i> No Data
+                                
+                            </td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

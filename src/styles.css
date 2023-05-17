@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+
+.pointer{
+    cursor: pointer;
+}
+
+.page-input-size{
+    width: 100px;
+}
+
+.page-height{
+    min-height: 60vh;
+}

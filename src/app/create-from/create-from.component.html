@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="row">
+        <div class="col mt-4">
+            <a class="link" routerLink="/info" routerLinkActive="activebutton" ariaCurrentWhenActive="page">
+                Go Back
+            </a>
+
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+
+    <form role="form" [formGroup]="profileForm " (ngSubmit)="onSubmit(profileForm)">
+
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-success" role="alert" *ngIf="isSubmitted">
+                    Infomation updated successfully <i class="bi bi-check-lg"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3">
+                <div class="input-group">
+                    <span class="input-group-text">Email</span>
+                    <input type="email" formControlName="emailCtrl" class="form-control"
+                        [ngClass]="{'is-invalid': formControl['emailCtrl'].invalid && ( formControl['emailCtrl'].dirty && formControl['emailCtrl'].touched)}" />
+
+                </div>
+                <ng-container
+                    *ngIf="formControl['emailCtrl'].invalid && ( formControl['emailCtrl'].dirty && formControl['emailCtrl'].touched)">
+                    <span class="form-text text-danger" *ngIf="formControl['emailCtrl']?.hasError('required')">
+                        email requred.
+                    </span>
+                    <span class="form-text text-danger" *ngIf="formControl['emailCtrl']?.hasError('pattern')">
+                        invalid email address.
+                    </span>
+                </ng-container>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col mb-3">
+
+                <div class="input-group">
+                    <span class="input-group-text">Password</span>
+                    <input type={{passwordType}} formControlName="passwordCtrl" class="form-control"
+                        [ngClass]="{'is-invalid': formControl['passwordCtrl'].invalid && ( formControl['passwordCtrl'].dirty && formControl['passwordCtrl'].touched)}" />
+                    <span class="input-group-text" id="basic-addon2" (click)="toggleVisiblePassword()">
+                        <i class="bi bi-eye-fill" *ngIf="isVisiblePassword"></i>
+                        <i class="bi bi-eye-slash-fill" *ngIf="!isVisiblePassword"></i>
+                    </span>
+                </div>
+                <ng-container
+                    *ngIf="formControl['passwordCtrl'].invalid && ( formControl['passwordCtrl'].dirty && formControl['passwordCtrl'].touched)">
+                    <span class="form-text text-danger" *ngIf="formControl['passwordCtrl']?.hasError('required')">
+                        password requred.
+                    </span>
+                    <span class="form-text text-danger" *ngIf="formControl['passwordCtrl']?.hasError('minlength')">
+                        minimum password length should be 8 characters
+                    </span>
+                </ng-container>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <button type="submit" class="btn btn-primary">Sumbit</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
